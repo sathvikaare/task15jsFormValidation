@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="Form">
+        <input type="text" id="ip1">
+        <input type="text" id="ip2">
+<input type="submit">
+    </form>
+    <script>
+        myform=document.getElementById("Form")
+        myform.addEventListener("submit",()=>{
+            let existed=localStorage.getItem("credentials");
+            users=existed?JSON.parse(existed):[]
+            input1=document.getElementById("ip1").value
+            input2=document.getElementById("ip2").value
+            obj={"username":input1,"password":input2}
+            let count=0;
+            for(i of users){
+                if(i.username==input1){
+                    alert("user is existed")
+                    count++
+                }
+            }
+            if(count==0){
+            users.push(obj)
+            localStorage.setItem("credentials",JSON.stringify(users))
+            }
+        })
+    </script>
+</body>
+</html>
